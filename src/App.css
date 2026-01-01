@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* *{
+  margin: 0;
+  padding: 0;
+} */
+
+/* width */
+::-webkit-scrollbar {
+  border-radius: 10px;
+  width: 5px;
+}
+
+/* Track */
+/* ::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+} */
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e4e7ec;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+* {
+  font-family: "Outfit";
+}
+
+.logo {
+  margin: 20px;
+}
+
+.main-sider {
+  margin: 20px;
+}
+
+.main-sider ul {
+  margin: 5px;
+  margin-top: 20px;
+}
+
+.main-sider ul li {
+  list-style-type: none;
+}
+
+.main-sider ul li button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+  border: none;
+  margin: 10px;
+}
+
+.main-sider p {
+  color: rgb(152, 162, 179);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.slid {
+  border: 2px solid red;
+}
+
+.left-nav {
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  margin: 25px;
+  padding: 25px;
+}
+
+.slideDivP p {
+  padding: 10px;
+  color: black;
+  font-size: medium;
+}
+
+.slideDivP p:hover {
+  background: #ecf3ff;
+  color: #465fff;
+  border-radius: 10px;
+}
+
+.datatable-sorter {
+  width: auto !important;
+}
+
+.productListTh .datatable-sorter::before {
+  display: none !important;
+}
+
+.productListTh .datatable-sorter::after {
+  display: none !important;
+}
+
+.proListRow td{
+   vertical-align: middle !important;
+}

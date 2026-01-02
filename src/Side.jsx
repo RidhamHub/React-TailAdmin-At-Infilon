@@ -127,10 +127,10 @@ function Side() {
                 <Link to="/products">Products</Link>
               </p>
               <p>
-                <Link to="/">Add Products</Link>
+                <Link to="/add-product">Add Products</Link>
               </p>
               <p>
-                <Link to="/">Billing</Link>
+                <Link to="/billing">Billing</Link>
               </p>
               <p>
                 <Link to="/">invoices</Link>

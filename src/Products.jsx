@@ -46,14 +46,14 @@ export default function Products() {
         </div>
         <hr className="text-gray-300" />
 
-        <div className="flex justify-between ">
+        <div className="sm:flex justify-between ">
           <div className=" m-4 border border-gray-200 px-2 rounded-xl flex justify-between items-center">
-            <div className="flex justify-center items-center mr-20 py-0">
+            <div className="flex justify-center items-center">
               <CiSearch />
               <input
                 className="border-none placeholder:text-gray-500 placeholder:text-sm"
                 type="text"
-                placeholder="search.."
+                placeholder="search..."
               />
             </div>
           </div>
@@ -67,6 +67,7 @@ export default function Products() {
           <thead className="mt-0 ">
             <tr className="">
               {/* badha th ni style .css file ma chhe */}
+              {/* productListTh clas ni baju ma sorting icons no dekhay  */}
               <th className="productListTh">
                 <input
                   className=" border-gray-300 rounded-sm"
@@ -127,7 +128,7 @@ export default function Products() {
                     </span>
                   </td>
                   <td className="text-gray-700">{item.CreatedAt}</td>
-                  <td >
+                  <td>
                     <BsThreeDots />
                   </td>
                 </tr>

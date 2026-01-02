@@ -281,3 +281,94 @@ export const ProductListData = [
    
 
 ]
+
+
+export const InvoiceData = [
+    
+    {
+        name: "Invoice #012 - May 2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Starter Plan",
+        status: "Paid"
+    },
+
+    {
+        name: "Invoice #013 - June 2024",
+        date: "June 01, 2024",
+        price: 120.00,
+        plan: "Starter Plan",
+        status: "Paid"
+    },
+    {
+        name: "Invoice #014 - July 2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Starter Plan",
+        status: "Unpaid"
+    },
+    {
+        name: "Invoice #015 - Augest 2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Pro Plan",
+        status: "Paid"
+    },
+    {
+        name: "Invoice #016 - September  2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Pro Plan",
+        status: "Paid"
+    },
+    {
+        name: "Invoice #012 - May 2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Pro Plan",
+        status: "Paid"
+    },
+
+    {
+        name: "Invoice #013 - June 2024",
+        date: "June 01, 2024",
+        price: 120.00,
+        plan: "Pro Plan",
+        status: "Paid"
+    },
+    {
+        name: "Invoice #014 - July 2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Starter Plan",
+        status: "Unpaid"
+    },
+    {
+        name: "Invoice #015 - Augest 2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Starter Plan",
+        status: "Paid"
+    },
+    {
+        name: "Invoice #016 - September  2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Starter Plan",
+        status: "Paid"
+    },
+    {
+        name: "Invoice #014 - July 2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Pro Plan",
+        status: "Unpaid"
+    },
+    {
+        name: "Invoice #015 - Augest 2024",
+        date: "May 01, 2024",
+        price: 120.00,
+        plan: "Starter Plan",
+        status: "Paid"
+    },
+]

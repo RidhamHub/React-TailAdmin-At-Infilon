@@ -14,6 +14,8 @@ import CodeGenerator from "./CodeGenerator.jsx";
 import VideoGenerator from "./VideoGenerator.jsx";
 import Products from "./Products.jsx";
 import "simple-datatables/dist/style.css";
+import AddProduct from "./AddProduct.jsx";
+import Billing from "./Billing.jsx";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="/code-generator" element={<CodeGenerator />} />
           <Route path="/video-generator" element={<VideoGenerator />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/billing" element={<Billing />} />
         </Routes>
       </div>
     </div>

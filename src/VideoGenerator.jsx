@@ -11,7 +11,7 @@ export default function VideoGenerator() {
 
       <div className="flex ">
         {/* left chat Box */}
-        <div className="w-[80%]  p-10  text-xs bg-[#F9FAFB]   ">
+        <div className="xl:w-[80%] w-full  p-10  text-xs bg-[#F9FAFB]   ">
           <div className=" flex-1 h-40  overflow-y-auto  ">
             <div className="flex justify-end pb-10">
               <p className=" rounded-xl rounded-tr-xs max-w-120  px-4 py-3 bg-blue-100">
@@ -44,7 +44,9 @@ export default function VideoGenerator() {
           <AiAssPromptBox />
         </div>
         {/* right box */}
-        <AiAssRightBox />
+        <div className="hidden xl:block">
+          <AiAssRightBox />
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import "./App.css";
 import Side from "./Side.jsx";
 import Nav from "./Nav.jsx";
 import Ecommerce from "./Ecomerce.jsx";
-import Check from "./Check.jsx";
 import { Routes, Route } from "react-router-dom";
 import Analytics from "./Analytics.jsx";
 import Marketing from "./Marketing.jsx";
@@ -16,6 +15,9 @@ import Products from "./Products.jsx";
 import "simple-datatables/dist/style.css";
 import AddProduct from "./AddProduct.jsx";
 import Billing from "./Billing.jsx";
+import Invoices from "./Invoices.jsx";
+import SingleInvoice from "./SingleInvoice.jsx";
+import CreateInvoice from "./CreateInvoice.jsx";
 
 function App() {
   return (
@@ -39,6 +41,9 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/billing" element={<Billing />} />
+          <Route path="/invoices" element={<Invoices />} />
+          <Route path="/single-invoice" element={<SingleInvoice />} />
+          <Route path="/create-invoice" element={<CreateInvoice />} />
         </Routes>
       </div>
     </div>

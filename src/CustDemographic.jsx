@@ -1,17 +1,20 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
+import ProgressBar from "./ProgressBar";
 
 function CustDemographic() {
   return (
     <div>
       <div className="bg-white mt-0  p-7  border border-[#E4E7EC] rounded-2xl ">
         <div>
-          <div className="flex  justify-between mb-4 ">
+          <div className="flex  justify-between  ">
             <p>Customers Demographic</p>
             <button>
               <BsThreeDotsVertical />
             </button>
           </div>
-          <p className="text-gray-500">Number of customer based on country</p>
+          <p className="text-gray-500 mb-4">
+            Number of customer based on country
+          </p>
           <div className="border border-[#E4E7EC] rounded-2xl ">
             <svg width="320" height="212">
               <defs></defs>
@@ -2747,25 +2750,37 @@ function CustDemographic() {
               <g></g>
             </svg>
           </div>
-          <div>
-            <div className="flex gap-3">
-              <img
-                src="https://nextjs-demo.tailadmin.com/images/country/country-01.svg"
-                alt=""
-              />
-              <div>
-                <p className="font-bold">USA</p>
-                <p className="text-gray-500 text-sm">2,379 Customers</p>
+          <div className="mt-5 space-y-3">
+            <div className="flex justify-between items-center">
+              <div className="flex gap-3 items-center">
+                <img
+                  src="https://nextjs-demo.tailadmin.com/images/country/country-01.svg"
+                  alt=""
+                />
+                <div>
+                  <p className="font-bold">USA</p>
+                  <p className="text-gray-500 text-sm">2,379 Customers</p>
+                </div>
+              </div>
+              <div className="w-30 flex items-center gap-2">
+                <ProgressBar percentage={79} />
+                <p className="font-medium text-sm text-gray-800">79% </p>
               </div>
             </div>
-            <div className="flex gap-3">
-              <img
-                src="https://nextjs-demo.tailadmin.com/images/country/country-02.svg"
-                alt=""
-              />
-              <div>
-                <p className="font-bold">France</p>
-                <p className="text-gray-500 text-sm">589 Customers</p>
+            <div className="flex justify-between items-center">
+              <div className="flex gap-3 items-center">
+                <img
+                  src="https://nextjs-demo.tailadmin.com/images/country/country-02.svg"
+                  alt=""
+                />
+                <div>
+                  <p className="font-bold">France</p>
+                  <p className="text-gray-500 text-sm">589 Customers</p>
+                </div>
+              </div>
+              <div className="w-30 flex items-center gap-2">
+                <ProgressBar percentage={23} />
+                <p className="font-medium text-sm text-gray-800">23% </p>
               </div>
             </div>
           </div>
@@ -2775,5 +2790,4 @@ function CustDemographic() {
   );
 }
 
-
-export default CustDemographic;;
+export default CustDemographic;

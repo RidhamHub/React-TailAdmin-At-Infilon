@@ -10,7 +10,7 @@ export default function AnaCard({ icon, title, number, change, color ,text}) {
   };
 
   return (
-    <div className="p-6 pb-1    bg-white rounded-xl border border-[#E4E7EC] shadow-sm">
+    <div className="p-6 pb-5    bg-white rounded-xl border border-[#E4E7EC] shadow-sm">
       {icon && (
         <div className="w-12 h-12 mb-6 bg-gray-100 rounded-lg flex items-center justify-center text-xl">
           {icon}
@@ -25,7 +25,7 @@ export default function AnaCard({ icon, title, number, change, color ,text}) {
           <div
             className={`${
               icon && "ml-7"
-            } px-1 py-0.5 rounded-full text-xs  ${
+            } px-2 py-1 rounded-full text-xs  ${
               dynamictextcolor[color]
             } ${dynaicbgcolor[color]}`}
           >

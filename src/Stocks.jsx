@@ -3,7 +3,7 @@ import StocksCard from "./StocksCard";
 function Stocks() {
   return (
     <div className="p-7 bg-gray-50 ">
-      <div className="flex gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-5">
         <StocksCard
           icon="https://react-demo.tailadmin.com/images/brand/brand-07.svg"
           title="Apple, Inc"

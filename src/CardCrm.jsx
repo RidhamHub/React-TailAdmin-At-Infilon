@@ -15,12 +15,14 @@ function CardCrm({ price, text, percent, color }) {
       <div className="flex gap-15 mt-7 text-sm">
         <p>{text}</p>
         <div className="flex gap-1">
-          <div
-            className={` px-1 py-0.5 rounded-full text-xs font-semibold ${dynamictextcolor[color]} ${dynaicbgcolor[color]}`}
-          >
-            {percent}%
+          <div>
+            <p
+              className={` px-2 py-1 rounded-full text-xs font-semibold ${dynamictextcolor[color]} ${dynaicbgcolor[color]}`}
+            >
+              {percent}%
+            </p>
           </div>
-          <p >last month</p>
+          <p>last month</p>
         </div>
       </div>
     </div>

@@ -63,8 +63,8 @@ function Analytics() {
 
       {/* top chanels and top pages */}
       <div className="mt-7  lg:flex  ">
-        <div className="mb-0  flex flex-col sm:flex-row items-center sm:items-start ">
-          <div className="bg-white  rounded-2xl p-7  ">
+        <div className="mb-0  flex flex-col md:flex-row items-center sm:items-start ">
+          <div className="bg-white  rounded-2xl p-7  w-full">
             <div className="flex justify-between ">
               <p className="font-bold">Top Channels</p>
               <button>
@@ -103,14 +103,14 @@ function Analytics() {
             </button>
           </div>
 
-          <div className="bg-white  rounded-2xl mt-7 sm:mt-0 sm:ml-7 p-7">
-            <div className="flex justify-between w-60">
+          <div className="bg-white  rounded-2xl w-full mt-7 sm:mt-0 sm:ml-7 p-7">
+            <div className="flex justify-between">
               <p className="font-bold">Top Pages</p>
               <button>
                 <BsThreeDotsVertical />
               </button>
             </div>
-            <div className="w-57 text-gray-500">
+            <div className=" text-gray-500">
               <div className="flex text-sm mt-5 justify-between">
                 <p>tailadmin.com</p>
                 <p>4.7k</p>
@@ -164,7 +164,7 @@ function Analytics() {
       {/* customer Demographic and recent order */}
       <div className="lg:flex mt-7 gap-5">
         <CustDemographic />
-        <div className="mt-7 lg:mt-0 bg-white w-full   p-7 pb-0 border border-[#E4E7EC] rounded-2xl ">
+        <div className="mt-7 lg:mt-0 bg-white  w-full   p-7 pb-0 border border-[#E4E7EC] rounded-2xl ">
           <div className="flex justify-between items-center">
             <p className="font-bold">Recent Orders</p>
             <div className="flex ">
@@ -178,97 +178,99 @@ function Analytics() {
             </div>
           </div>
           <hr className="border-gray-200" />
-          <div className="text-gray-500 text-sm">
-            <div className="grid grid-cols-5 gap-8 m-3 ml-0">
-              <p>Products</p>
-              <p>Category</p>
-              <p>Country</p>
-              <p>CR</p>
-              <p>Value</p>
-            </div>
-            <hr className="border-gray-200" />
-            <div className="grid grid-cols-5 m-3 ml-0 gap-8">
-              <p className="text-black font-bold">TailGrids</p>
-              <p>UI Kits</p>
-              <img
-                src="https://nextjs-demo.tailadmin.com/images/country/country-01.svg"
-                alt=""
-                className="h-5 w-5"
-              />
-              <p>Dashboard</p>
-              <p className="text-green-600 font-semibold">$12,499</p>
-            </div>
-            <hr className="border-gray-200" />
-            <div className="grid grid-cols-5 m-3 ml-0 gap-8">
-              <p className="text-black font-bold">GrayGrids</p>
-              <p>GrayGrids</p>
-              <img
-                src="https://nextjs-demo.tailadmin.com/images/country/country-02.svg"
-                alt=""
-                className="h-5 w-5"
-              />
-              <p>Dashboard</p>
-              <p className="text-green-600 font-semibold">$5498</p>
-            </div>
-            <hr className="border-gray-200" />
-            <div className="grid grid-cols-5 m-3 ml-0 gap-8">
-              <p className="text-black font-bold">Uideck</p>
-              <p>Templates</p>
-              <img
-                src="https://nextjs-demo.tailadmin.com/images/country/country-03.svg"
-                alt=""
-                className="h-5 w-5"
-              />
-              <p>Dashboard</p>
-              <p className="text-green-600 font-semibold">$4621</p>
-            </div>
-            <hr className="border-gray-200" />
-            <div className="grid grid-cols-5 m-3 ml-0 gap-8">
-              <p className="text-black font-bold">FormBold</p>
-              <p>SaaS</p>
-              <img
-                src="https://nextjs-demo.tailadmin.com/images/country/country-04.svg"
-                alt=""
-                className="h-5 w-5"
-              />
-              <p>Dashboard</p>
-              <p className="text-green-600 font-semibold">$13,843</p>
-            </div>
-            <hr className="border-gray-200" />
-            <div className="grid grid-cols-5 m-3 ml-0 gap-8">
-              <p className="text-black font-bold">NextAdmin</p>
-              <p>Templates</p>
-              <img
-                src="https://nextjs-demo.tailadmin.com/images/country/country-05.svg"
-                alt=""
-                className="h-5 w-5"
-              />
-              <p>Dashboard</p>
-              <p className="text-green-600 font-semibold">$7,523</p>
-            </div>
-            <hr className="border-gray-200" />
-            <div className="grid grid-cols-5 m-3 ml-0 gap-8">
-              <p className="text-black font-bold">Form Builder</p>
-              <p>Templates</p>
-              <img
-                src="https://nextjs-demo.tailadmin.com/images/country/country-06.svg"
-                alt=""
-                className="h-5 w-5"
-              />
-              <p>Dashboard</p>
-              <p className="text-green-600 font-semibold">$1,373</p>
-            </div>
-            <hr className="border-gray-200" />
-            <div className="grid grid-cols-5 m-3 ml-0 gap-8">
-              <p className="text-black font-bold">AyroUI</p>
-              <p>Templates</p>
-              <img
-                src="https://react-demo.tailadmin.com/images/country/country-07.svg"
-                alt=""
-                className="h-5 w-5"
-              />
-              <p>Dashboard</p>
-              <p className="text-green-600 font-semibold">$500,00</p>
+          <div className="overflow-x-scroll">
+            <div className="anatable text-gray-500  text-sm ">
+              <div className="grid grid-cols-5 gap-8 m-3 ml-0">
+                <p>Products</p>
+                <p>Category</p>
+                <p>Country</p>
+                <p>CR</p>
+                <p>Value</p>
+              </div>
+              <hr className="border-gray-200" />
+              <div className="grid grid-cols-5 m-3 ml-0 gap-8">
+                <p className="text-black font-bold">TailGrids</p>
+                <p>UI Kits</p>
+                <img
+                  src="https://nextjs-demo.tailadmin.com/images/country/country-01.svg"
+                  alt=""
+                  className="h-5 w-5"
+                />
+                <p>Dashboard</p>
+                <p className="text-green-600 font-semibold">$12,499</p>
+              </div>
+              <hr className="border-gray-200" />
+              <div className="grid grid-cols-5 m-3 ml-0 gap-8">
+                <p className="text-black font-bold">GrayGrids</p>
+                <p>GrayGrids</p>
+                <img
+                  src="https://nextjs-demo.tailadmin.com/images/country/country-02.svg"
+                  alt=""
+                  className="h-5 w-5"
+                />
+                <p>Dashboard</p>
+                <p className="text-green-600 font-semibold">$5498</p>
+              </div>
+              <hr className="border-gray-200" />
+              <div className="grid grid-cols-5 m-3 ml-0 gap-8">
+                <p className="text-black font-bold">Uideck</p>
+                <p>Templates</p>
+                <img
+                  src="https://nextjs-demo.tailadmin.com/images/country/country-03.svg"
+                  alt=""
+                  className="h-5 w-5"
+                />
+                <p>Dashboard</p>
+                <p className="text-green-600 font-semibold">$4621</p>
+              </div>
+              <hr className="border-gray-200" />
+              <div className="grid grid-cols-5 m-3 ml-0 gap-8">
+                <p className="text-black font-bold">FormBold</p>
+                <p>SaaS</p>
+                <img
+                  src="https://nextjs-demo.tailadmin.com/images/country/country-04.svg"
+                  alt=""
+                  className="h-5 w-5"
+                />
+                <p>Dashboard</p>
+                <p className="text-green-600 font-semibold">$13,843</p>
+              </div>
+              <hr className="border-gray-200" />
+              <div className="grid grid-cols-5 m-3 ml-0 gap-8">
+                <p className="text-black font-bold">NextAdmin</p>
+                <p>Templates</p>
+                <img
+                  src="https://nextjs-demo.tailadmin.com/images/country/country-05.svg"
+                  alt=""
+                  className="h-5 w-5"
+                />
+                <p>Dashboard</p>
+                <p className="text-green-600 font-semibold">$7,523</p>
+              </div>
+              <hr className="border-gray-200" />
+              <div className="grid grid-cols-5 m-3 ml-0 gap-8">
+                <p className="text-black font-bold">Form Builder</p>
+                <p>Templates</p>
+                <img
+                  src="https://nextjs-demo.tailadmin.com/images/country/country-06.svg"
+                  alt=""
+                  className="h-5 w-5"
+                />
+                <p>Dashboard</p>
+                <p className="text-green-600 font-semibold">$1,373</p>
+              </div>
+              <hr className="border-gray-200" />
+              <div className="grid grid-cols-5 m-3 ml-0 gap-8">
+                <p className="text-black font-bold">AyroUI</p>
+                <p>Templates</p>
+                <img
+                  src="https://react-demo.tailadmin.com/images/country/country-07.svg"
+                  alt=""
+                  className="h-5 w-5"
+                />
+                <p>Dashboard</p>
+                <p className="text-green-600 font-semibold">$500,00</p>
+              </div>
             </div>
           </div>
         </div>

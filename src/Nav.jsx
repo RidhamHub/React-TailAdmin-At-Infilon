@@ -7,7 +7,7 @@ function Nav() {
   return (
     <header className="sticky bg-white w-full top-0 z-10">
       <div>
-        <div className="block lg:hidden ">
+        <div className="block xl:hidden ">
           <div className="flex justify-between">
             <button className="white-bg-btn p-0 m-5 toggle-btn">
               <RxHamburgerMenu />
@@ -24,7 +24,7 @@ function Nav() {
           </div>
         </div>
 
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <div className="flex items-center justify-between px-6  border-b border-gray-200">
             <div className="left-nav">
               <button className="bg-white border border-gray-200 p-3 rounded-xl ">

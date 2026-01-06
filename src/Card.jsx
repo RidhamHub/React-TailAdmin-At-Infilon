@@ -8,13 +8,13 @@ export default function Card({
   text,
 }) {
   const dynamictextcolor = {
-    green: "text-green-500",
-    red: "text-red-500",
+    green: "text-green-600",
+    red: "text-red-600",
   };
 
   const dynaicbgcolor = {
-    green: "bg-green-100",
-    red: "bg-red-100",
+    green: "bg-green-50",
+    red: "bg-red-50",
   };
 
   return (
@@ -30,12 +30,14 @@ export default function Card({
           {number.toLocaleString()}
         </h2>
 
-        <div className="flex">
-          <div
-            className={`inline-flex items-center gap-2 px-2  rounded-full text-sm font-semibold ${dynamictextcolor[color]} ${dynaicbgcolor[color]}`}
-          >
-            {arrow}
-            <span>{change}%</span>
+        <div className="flex ">
+          <div className="flex items-baseline-last">
+            <span
+              className={` px-2  rounded-full text-sm font-medium ${dynamictextcolor[color]} ${dynaicbgcolor[color]}`}
+            >
+              {arrow}
+              {change}%
+            </span>
           </div>
 
           {text && (

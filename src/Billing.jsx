@@ -31,14 +31,14 @@ export default function Billing() {
       <EcommTitle title="Billing" />
       <div className="p-7">
         {/* Plan Details and Billing Info */}
-        <div className="flex ">
-          {/* plan Billing */}
+        <div className="flex flex-col lg:flex-row ">
+          {/* Products Description 2 boxes */}
           <div className=" bg-white border  border-gray-300 rounded-2xl mt-0 ">
             <div className="p-5 font-medium text-lg text-gray-800   ">
               <p>Products Description</p>
             </div>
             <hr className="border-gray-300" />
-            <div className="grid grid-cols-2 p-5">
+            <div className="grid lg:grid-cols-2 p-5">
               <div className="border border-gray-300 rounded-2xl mr-4">
                 <ul className="p-5">
                   <li>
@@ -140,9 +140,9 @@ export default function Billing() {
             </div>
           </div>
           {/* Billing Info */}
-          <div className=" bg-white border  border-gray-300 rounded-2xl ml-7 ">
+          <div className=" bg-white border  border-gray-300 rounded-2xl mt-7 lg:mt-0 lg:ml-7 ">
             <div className="p-5 font-medium text-lg text-gray-800   ">
-              <p>Products Description</p>
+              <p>Billing Info</p>
             </div>
             <hr className="border-gray-300" />
             <div className="m-5 p-5 border border-gray-300 rounded-2xl">
@@ -237,7 +237,7 @@ export default function Billing() {
               <tr className="">
                 {/* badha th ni style .css file ma chhe */}
 
-                <th  >
+                <th>
                   <span class="flex items-center mr-5">Name</span>
                 </th>
                 <th>

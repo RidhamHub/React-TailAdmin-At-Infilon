@@ -28,7 +28,7 @@ export default function Products() {
       <EcommTitle title="Product List " />
 
       <div className="m-5 bg-white  rounded-2xl border border-gray-300">
-        <div className="p-5 flex justify-between">
+        <div className="p-5 flex flex-wrap gap-2 justify-between">
           <div>
             <p className="font-bold">Products List</p>
             <p className="text-sm text-gray-500">
@@ -63,7 +63,8 @@ export default function Products() {
         </div>
         <hr className="text-gray-300" />
 
-        <table id="default-table">
+
+        <table className="protable" id="default-table">
           <thead className="mt-0 ">
             <tr className="">
               {/* badha th ni style .css file ma chhe */}

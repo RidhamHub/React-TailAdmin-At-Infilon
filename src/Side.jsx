@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 function Side() {
   return (
-    <div className="hidden md:block">
+    <div className="hidden xl:block">
       <div className="logo">
         <img
           src="https://nextjs-demo.tailadmin.com/images/logo/logo.svg"
@@ -133,13 +133,13 @@ function Side() {
                 <Link to="/billing">Billing</Link>
               </p>
               <p>
-                <Link to="/">invoices</Link>
+                <Link to="/invoices">invoices</Link>
               </p>
               <p>
-                <Link to="/">single invoice</Link>
+                <Link to="/single-invoice">single invoice</Link>
               </p>
               <p>
-                <Link to="/">Create invoices</Link>
+                <Link to="/create-invoice">Create invoices</Link>
               </p>
               <p>
                 <Link to="/">Transactions</Link>

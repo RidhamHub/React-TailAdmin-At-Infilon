@@ -32,7 +32,7 @@ function RecentOrderCrmCard({
 
   return (
     <>
-      <td className="items-center">
+      <td className="items-center pl-4">
         <div className="flex gap-2 items-center">
           <input className="border-gray-300 rounded-sm" type="checkbox" />
           <p>{id}</p>

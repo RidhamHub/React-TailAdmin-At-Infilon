@@ -13,7 +13,7 @@ export default function AddProduct() {
           </div>
           <hr className="border-gray-300" />
 
-          <div className="p-5 pb-0 grid grid-cols-2 gap-4">
+          <div className="p-5 pb-0 grid sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="product-name"
@@ -67,7 +67,7 @@ export default function AddProduct() {
               </div>
             </div>
           </div>
-          <div className="p-5 pb-0 grid grid-cols-2 gap-4">
+          <div className="p-5 pb-0 grid sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="product-name"
@@ -131,7 +131,7 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="p-5 pb-0 grid grid-cols-3 gap-4 ">
+          <div className="p-5 pb-0 grid sm:grid-cols-3 gap-4 ">
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="product-name"
@@ -209,7 +209,7 @@ export default function AddProduct() {
             <p>Pricing & Availability</p>
           </div>
           <hr className="border-gray-300" />
-          <div className="p-5 pb-0 grid grid-cols-3 gap-4 ">
+          <div className="p-5 pb-0 grid sm:grid-cols-3 gap-4 ">
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="product-name"
@@ -262,7 +262,7 @@ export default function AddProduct() {
               </div>
             </div>
           </div>
-          <div className="p-5 grid grid-cols-2 gap-4">
+          <div className="p-5 grid sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="product-name"

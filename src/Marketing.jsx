@@ -61,139 +61,143 @@ function Marketing() {
           </div>
 
           {/* Featured Campaigns */}
-          <div className="bg-white mt-7 p-7 rounded-2xl">
-            <div className="flex justify-between mb-4 ">
-              <p className="font-bold text-xl">Featured Campaigns</p>
-              <button>
-                <BsThreeDotsVertical />
-              </button>
-            </div>
-            <hr className="border-gray-200" />
+          <div className="overflow-x-scroll">
+            <div className="martabel bg-white mt-7 p-7 rounded-2xl">
+              <div className="flex justify-between mb-4 ">
+                <p className="font-bold text-xl">Featured Campaigns</p>
+                <button>
+                  <BsThreeDotsVertical />
+                </button>
+              </div>
+              <hr className="border-gray-200" />
 
-            <div className="flex justify-between text-gray-500 text-sm">
-              <p>Products</p>
-              <p>Campaign</p>
-              <p>Status</p>
-            </div>
-            <hr className="border-gray-200" />
+              <div className="flex justify-between text-gray-500 text-sm">
+                <p>Products</p>
+                <p>Campaign</p>
+                <p>Status</p>
+              </div>
+              <hr className="border-gray-200" />
 
-            <FeaturedCampaignsCard
-              profile="https://react-demo.tailadmin.com/images/user/user-01.jpg"
-              name="Wilson Gouse"
-              compney="https://react-demo.tailadmin.com/images/brand/brand-01.svg"
-              str="Grow your brand by..."
-              campaign="Ads campaign"
-              status="Success"
-            />
-            <hr className="border-gray-200" />
-            <FeaturedCampaignsCard
-              profile="https://react-demo.tailadmin.com/images/user/user-02.jpg"
-              name="Wilson Gouse"
-              compney="https://react-demo.tailadmin.com/images/brand/brand-02.svg"
-              str="Grow your brand by..."
-              campaign="Ads campaign"
-              status="Pending"
-            />
-            <hr className="border-gray-200" />
-            <FeaturedCampaignsCard
-              profile="https://react-demo.tailadmin.com/images/user/user-03.jpg"
-              name="Wilson Gouse"
-              compney="https://react-demo.tailadmin.com/images/brand/brand-03.svg"
-              str="Grow your brand by..."
-              campaign="Ads campaign"
-              status="Success"
-            />
-            <hr className="border-gray-200" />
-            <FeaturedCampaignsCard
-              profile="https://react-demo.tailadmin.com/images/user/user-04.jpg"
-              name="Wilson Gouse"
-              compney="https://react-demo.tailadmin.com/images/brand/brand-04.svg"
-              str="Grow your brand by..."
-              campaign="Ads campaign"
-              status="Failed"
-            />
-            <hr className="border-gray-200" />
-            <FeaturedCampaignsCard
-              profile="https://react-demo.tailadmin.com/images/user/user-05.jpg"
-              name="Wilson Gouse"
-              compney="https://react-demo.tailadmin.com/images/brand/brand-05.svg"
-              str="Grow your brand by..."
-              campaign="Ads campaign"
-              status="Success"
-            />
-            <hr className="border-gray-200" />
-            <FeaturedCampaignsCard
-              profile="https://react-demo.tailadmin.com/images/user/user-06.jpg"
-              name="Wilson Gouse"
-              compney="https://react-demo.tailadmin.com/images/brand/brand-06.svg"
-              str="Grow your brand by..."
-              campaign="Ads campaign"
-              status="Success"
-            />
+              <FeaturedCampaignsCard
+                profile="https://react-demo.tailadmin.com/images/user/user-01.jpg"
+                name="Wilson Gouse"
+                compney="https://react-demo.tailadmin.com/images/brand/brand-01.svg"
+                str="Grow your brand by..."
+                campaign="Ads campaign"
+                status="Success"
+              />
+              <hr className="border-gray-200" />
+              <FeaturedCampaignsCard
+                profile="https://react-demo.tailadmin.com/images/user/user-02.jpg"
+                name="Wilson Gouse"
+                compney="https://react-demo.tailadmin.com/images/brand/brand-02.svg"
+                str="Grow your brand by..."
+                campaign="Ads campaign"
+                status="Pending"
+              />
+              <hr className="border-gray-200" />
+              <FeaturedCampaignsCard
+                profile="https://react-demo.tailadmin.com/images/user/user-03.jpg"
+                name="Wilson Gouse"
+                compney="https://react-demo.tailadmin.com/images/brand/brand-03.svg"
+                str="Grow your brand by..."
+                campaign="Ads campaign"
+                status="Success"
+              />
+              <hr className="border-gray-200" />
+              <FeaturedCampaignsCard
+                profile="https://react-demo.tailadmin.com/images/user/user-04.jpg"
+                name="Wilson Gouse"
+                compney="https://react-demo.tailadmin.com/images/brand/brand-04.svg"
+                str="Grow your brand by..."
+                campaign="Ads campaign"
+                status="Failed"
+              />
+              <hr className="border-gray-200" />
+              <FeaturedCampaignsCard
+                profile="https://react-demo.tailadmin.com/images/user/user-05.jpg"
+                name="Wilson Gouse"
+                compney="https://react-demo.tailadmin.com/images/brand/brand-05.svg"
+                str="Grow your brand by..."
+                campaign="Ads campaign"
+                status="Success"
+              />
+              <hr className="border-gray-200" />
+              <FeaturedCampaignsCard
+                profile="https://react-demo.tailadmin.com/images/user/user-06.jpg"
+                name="Wilson Gouse"
+                compney="https://react-demo.tailadmin.com/images/brand/brand-06.svg"
+                str="Grow your brand by..."
+                campaign="Ads campaign"
+                status="Success"
+              />
+            </div>
           </div>
         </div>
 
         {/* right box */}
-        <div className=" p-7 pr-0 w-full lg:w-[35%]">
+        <div className="mt-7 sm:mt-0 sm:p-7 sm:pr-0 sm:pt-0 w-full lg:w-[35%]">
           {/* Traffic Stats */}
-          <div className="bg-white rounded-2xl p-7">
-            <div className="flex justify-between mb-4 ">
-              <p className="font-bold text-xl">Traffic Stats</p>
-              <button>
-                <BsThreeDotsVertical />
-              </button>
-            </div>
-            <div className="bg-red-500 my-5">
-              <button>Monthly</button>
-              <button>Quartely</button>
-              <button>Annually</button>
-            </div>
-
-            <div>
-              <p className="text-sm text-gray-500">
-                New <br /> Subscribers
-              </p>
-              <p className="text-2xl font-bold">567K</p>
-              <div className="flex items-center gap-1">
-                <p className="text-green-500"> +3.85%</p>
-                <p className="text-sm text-gray-500">then last Week</p>
-                <img
-                  src="./src/assets/image.png "
-                  alt=""
-                  className="h-[50%] w-[50%]"
-                />
+          <div className="overflow-x-scroll">
+            <div className="martab1 bg-white rounded-2xl p-7">
+              <div className="flex justify-between mb-4 ">
+                <p className="font-bold text-xl">Traffic Stats</p>
+                <button>
+                  <BsThreeDotsVertical />
+                </button>
               </div>
-            </div>
-            <hr className="border-gray-200 m-4" />
-
-            <div>
-              <p className="text-sm text-gray-500">
-                Conversion <br /> Rate
-              </p>
-              <p className="text-2xl font-bold">276K</p>
-              <div className="flex items-center gap-1">
-                <p className="text-red-500"> -5.39%</p>
-                <p className="text-sm text-gray-500">then last Week</p>
-                <img
-                  src="./src/assets/image.png "
-                  alt=""
-                  className="h-[50%] w-[50%]"
-                />
+              <div className="bg-red-500 my-5">
+                <button>Monthly</button>
+                <button>Quartely</button>
+                <button>Annually</button>
               </div>
-            </div>
-            <hr className="border-gray-200 m-4" />
 
-            <div>
-              <p className="text-sm text-gray-500">Page Bounce Rate</p>
-              <p className="text-2xl font-bold">285k</p>
-              <div className="flex items-center gap-1">
-                <p className="text-green-500"> +12.74%</p>
-                <p className="text-sm text-gray-500">then last Week</p>
-                <img
-                  src="./src/assets/image.png "
-                  alt=""
-                  className="h-[50%] w-[50%]"
-                />
+              <div>
+                <p className="text-sm text-gray-500">
+                  New <br /> Subscribers
+                </p>
+                <p className="text-2xl font-bold">567K</p>
+                <div className="flex items-center gap-1">
+                  <p className="text-green-500"> +3.85%</p>
+                  <p className="text-sm text-gray-500">then last Week</p>
+                  <img
+                    src="./src/assets/image.png "
+                    alt=""
+                    className="h-[50%] w-[50%]"
+                  />
+                </div>
+              </div>
+              <hr className="border-gray-200 m-4" />
+
+              <div>
+                <p className="text-sm text-gray-500">
+                  Conversion <br /> Rate
+                </p>
+                <p className="text-2xl font-bold">276K</p>
+                <div className="flex items-center gap-1">
+                  <p className="text-red-500"> -5.39%</p>
+                  <p className="text-sm text-gray-500">then last Week</p>
+                  <img
+                    src="./src/assets/image.png "
+                    alt=""
+                    className="h-[50%] w-[50%]"
+                  />
+                </div>
+              </div>
+              <hr className="border-gray-200 m-4" />
+
+              <div>
+                <p className="text-sm text-gray-500">Page Bounce Rate</p>
+                <p className="text-2xl font-bold">285k</p>
+                <div className="flex items-center gap-1">
+                  <p className="text-green-500"> +12.74%</p>
+                  <p className="text-sm text-gray-500">then last Week</p>
+                  <img
+                    src="./src/assets/image.png "
+                    alt=""
+                    className="h-[50%] w-[50%]"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -218,7 +222,7 @@ function Marketing() {
                   <hr className="border-gray-200 my-2" />
                 </>
               ))}
-            </div> 
+            </div>
 
             <button className="border border-gray-200 w-full mt-4 p-2 rounded-xl">
               View All

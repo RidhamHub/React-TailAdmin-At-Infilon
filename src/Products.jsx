@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import EcommTitle from "./EcommTitle";
 import { DataTable } from "simple-datatables";
 import { ProductListData } from "./Data";
@@ -6,22 +6,44 @@ import { FiDownload } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
+import axios from "axios";
 
 export default function Products() {
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
-    const tableElement = document.getElementById("default-table");
+    const alldata = async () => {
+      try {
+        const res = await axios.get("http://localhost:7000/product");
+        console.log("product data : ", res);
+        setProducts(res.data);
+      } catch (error) {
+        console.log("g0t error to get all data : ", error);
+      }
+    };
 
-    if (tableElement) {
-      const dataTable = new DataTable("#default-table", {
-        searchable: false,
-        perPageSelect: false,
-      });
-
-      return () => {
-        dataTable.destroy();
-      };
-    }
+    alldata();
   }, []);
+
+  useEffect(() => {
+    
+    // const tableElement = document.getElementById("default-table");
+    // if (tableElement) {
+    // const dataTable = new DataTable("#default-table", { searchable: false, perPageSelect: false, });
+
+    if (products.length === 0) return;
+
+    const dataTable = new DataTable("#default-table", {
+      searchable: false,
+      perPageSelect: false,
+    });
+
+    return () => {
+      dataTable.destroy();
+    };
+  }, [products]);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="bg-[#F9FAFB]">
@@ -40,7 +62,10 @@ export default function Products() {
               Export <FiDownload />
             </button>
             <button className="bg-blue-500  text-white border rounded-lg p-3">
-              + <span className="ml-2 font-semibold"> App Product</span>
+              +
+              <a href="/add-product" className="ml-2 font-semibold">
+                App Product
+              </a>
             </button>
           </div>
         </div>
@@ -63,7 +88,6 @@ export default function Products() {
         </div>
         <hr className="text-gray-300" />
 
-
         <table className="protable" id="default-table">
           <thead className="mt-0 ">
             <tr className="">
@@ -76,61 +100,65 @@ export default function Products() {
                 />
               </th>
               <th>
-                <span class="flex items-center mr-5">Products</span>
+                <span className="flex items-center mr-5">Products</span>
               </th>
               <th>
                 <span className="flex items-center mr-5">Category</span>
               </th>
               <th>
-                <span class="flex items-center mr-5">Brand</span>
+                <span className="flex items-center mr-5">Brand</span>
               </th>
               <th>
-                <span class="flex items-center mr-5">Price</span>
+                <span className="flex items-center mr-5">Price</span>
               </th>
               <th>
-                <span class="flex items-center mr-5">Stock</span>
+                <span className="flex items-center mr-5">Stock</span>
               </th>
               <th>
-                <span class="flex items-center mr-5">Created At</span>
+                <span className="flex items-center mr-5">Created At</span>
               </th>
               <th className="productListTh"> </th>
             </tr>
           </thead>
           <tbody>
-            {ProductListData.map((item) => {
-              const isInStock = item.Stock === "In Stock";
+            {products.map((item, index) => {
+              const isInStock = item.stock === "In Stock";
 
               const textColor = isInStock ? "text-green-700" : "text-red-700";
               const bgColor = isInStock ? "bg-green-50" : "bg-red-50";
 
               return (
-                //   proListRow na badha td ma vertical-aligne:middle apyu chhe external file ma...
-                <tr className="text-gray-500 proListRow ">
+                <tr key={item._id} className="text-gray-500 proListRow">
                   <td>
-                    <input
-                      className="border-gray-300 rounded-sm"
-                      type="checkbox"
-                    />
+                    <input type="checkbox" />
                   </td>
+
                   <td>
-                    <div className="flex items-center">
-                      <img className=" h-15 w-15" src={item.icon} alt="" />
-                      <span className="text-gray-700">{item.name}</span>
+                    <div className="flex items-center gap-2">
+                      <img className="h-10 w-10" src={item.imageUrl} alt="" />
+                      <span className="text-gray-700">{item.productName}</span>
                     </div>
                   </td>
-                  <td className="text-gray-700 ">{item.Categary}</td>
-                  <td className="text-gray-700 ">{item.Brand} </td>
-                  <td className="text-gray-700 ">${item.Price}</td>
+
+                  <td>{item.category}</td>
+                  <td>{item.brand}</td>
+                  <td>₹{item.price}</td>
+
                   <td>
                     <span
-                      className={`px-2 text-xs font-medium rounded-full ${textColor} ${bgColor}`}
+                      className={`${textColor} ${bgColor} px-2 text-xs rounded-full`}
                     >
-                      {item.Stock}
+                      {item.stock}
                     </span>
                   </td>
-                  <td className="text-gray-700">{item.CreatedAt}</td>
-                  <td>
-                    <BsThreeDots />
+
+                  <td>{new Date(item.createdAt).toLocaleDateString()}</td>
+
+                  <td
+                    className="px-4 py-2 text-right cursor-pointer"
+                    onClick={() => alert("TD CLICKED")}
+                  >
+                    CLICK ME
                   </td>
                 </tr>
               );

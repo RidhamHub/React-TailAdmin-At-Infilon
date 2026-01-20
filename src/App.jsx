@@ -19,6 +19,8 @@ import Invoices from "./Invoices.jsx";
 import SingleInvoice from "./SingleInvoice.jsx";
 import CreateInvoice from "./CreateInvoice.jsx";
 
+import ProductForm from "./ProductForm.jsx";
+
 function App() {
   return (
     <div className="flex w-full">
@@ -44,6 +46,7 @@ function App() {
           <Route path="/invoices" element={<Invoices />} />
           <Route path="/single-invoice" element={<SingleInvoice />} />
           <Route path="/create-invoice" element={<CreateInvoice />} />
+          <Route path="/product-form" element={<ProductForm />} />
         </Routes>
       </div>
     </div>

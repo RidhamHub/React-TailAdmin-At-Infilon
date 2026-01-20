@@ -2,10 +2,15 @@ import EcommTitle from "./EcommTitle";
 import { FiUpload } from "react-icons/fi";
 
 export default function AddProduct() {
+
+  const hadlesubmit = async (e) => {
+    console.log("form submitted");
+  }
+
   return (
     <div className="bg-[#F9FAFB] pb-20">
       <EcommTitle title="Add Product" />
-      <form className="mt-5" action="">
+      <form onSubmit={(e) => hadlesubmit(e)} className="mt-5" action="">
         {/* Box------1 */}
         <div className=" bg-white border  border-gray-300 rounded-2xl m-7 mt-0 ">
           <div className="p-5 font-medium text-lg text-gray-800   ">
@@ -355,7 +360,10 @@ export default function AddProduct() {
           <button className="border bg-white border-gray-300 rounded-lg py-3 px-5 text-gray-700">
             Draft
           </button>
-          <button className="text-white p-3 bg-blue-500 rounded-lg">
+          <button
+            type="submit"
+            className="text-white p-3 bg-blue-500 rounded-lg"
+          >
             Publish Product
           </button>
         </div>

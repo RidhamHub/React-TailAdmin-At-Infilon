@@ -1,49 +1,63 @@
 import { useEffect, useState } from "react";
 import EcommTitle from "./EcommTitle";
 import { DataTable } from "simple-datatables";
-import { ProductListData } from "./Data";
 import { FiDownload } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
+  
+
+  const handleDelProduct = async (id) => {
+    // alert("buttn is clicked");
+    if (!window.confirm("Are you sure you want to delet the product")) return;
+
+    try {
+      const res = await axios.post(`http://localhost:7000/product/del/${id}`);
+      // alert(res.data.msg);
+      alldata();
+      // const updated = await axios.get("http://localhost:7000/product");
+      // setProducts(updated.data);
+    } catch (e) {
+      console.log("Error in delete of product : ", e);
+      alert("Failed to delete product");
+    }
+  };
+
+  const alldata = async () => {
+    try {
+      const res = await axios.get("http://localhost:7000/product");
+      console.log("product data : ", res);
+      setProducts(res.data);
+    } catch (error) {
+      console.log("g0t error to get all data : ", error);
+    }
+  };
 
   useEffect(() => {
-    const alldata = async () => {
-      try {
-        const res = await axios.get("http://localhost:7000/product");
-        console.log("product data : ", res);
-        setProducts(res.data);
-      } catch (error) {
-        console.log("g0t error to get all data : ", error);
-      }
-    };
-
     alldata();
   }, []);
 
-  useEffect(() => {
-    
-    // const tableElement = document.getElementById("default-table");
-    // if (tableElement) {
-    // const dataTable = new DataTable("#default-table", { searchable: false, perPageSelect: false, });
+  // useEffect(() => {
+  //   // const tableElement = document.getElementById("default-table");
+  //   // if (tableElement) {
+  //   // const dataTable = new DataTable("#default-table", { searchable: false, perPageSelect: false, });
 
-    if (products.length === 0) return;
+  //   if (products.length === 0) return;
 
-    const dataTable = new DataTable("#default-table", {
-      searchable: false,
-      perPageSelect: false,
-    });
+  //   const dataTable = new DataTable("#default-table", {
+  //     searchable: false,
+  //     perPageSelect: false,
+  //   });
 
-    return () => {
-      dataTable.destroy();
-    };
-  }, [products]);
-
-  const [isOpen, setIsOpen] = useState(false);
+  //   return () => {
+  //     dataTable.destroy();
+  //   };
+  // }, [products]);
 
   return (
     <div className="bg-[#F9FAFB]">
@@ -63,7 +77,7 @@ export default function Products() {
             </button>
             <button className="bg-blue-500  text-white border rounded-lg p-3">
               +
-              <a href="/add-product" className="ml-2 font-semibold">
+              <a href="/product-form" className="ml-2 font-semibold">
                 App Product
               </a>
             </button>
@@ -117,7 +131,7 @@ export default function Products() {
               <th>
                 <span className="flex items-center mr-5">Created At</span>
               </th>
-              <th className="productListTh"> </th>
+              <th className="productListTh"> Action </th>
             </tr>
           </thead>
           <tbody>
@@ -154,11 +168,21 @@ export default function Products() {
 
                   <td>{new Date(item.createdAt).toLocaleDateString()}</td>
 
-                  <td
-                    className="px-4 py-2 text-right cursor-pointer"
-                    onClick={() => alert("TD CLICKED")}
-                  >
-                    CLICK ME
+                  <td className="px-4 py-2 ">
+                    <button
+                      type="button"
+                      onClick={() => handleDelProduct(item._id)}
+                      className=" cursor-pointer border px-1 py-0 rounded-sm text-black text-sm bg-red-100 "
+                    >
+                      Delete
+                    </button>
+                    <Link to={`/product-form/edit/${item._id}`}>
+                      <button
+                        className="ml-2 px-1 py-0 border rounded-sm text-black text-sm bg-green-100"
+                      >
+                        Edit
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               );

@@ -47,6 +47,7 @@ function App() {
           <Route path="/single-invoice" element={<SingleInvoice />} />
           <Route path="/create-invoice" element={<CreateInvoice />} />
           <Route path="/product-form" element={<ProductForm />} />
+          <Route path="/product-form/edit/:id" element={<ProductForm />} />
         </Routes>
       </div>
     </div>

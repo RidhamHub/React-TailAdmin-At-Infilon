@@ -92,13 +92,11 @@
   width: auto !important;
 }
 
-.productListTh .datatable-sorter::before {
-  display: none !important;
-}
-
+.productListTh .datatable-sorter::before,
 .productListTh .datatable-sorter::after {
   display: none !important;
 }
+
 
 .proListRow td {
   vertical-align: middle !important;
@@ -108,21 +106,21 @@
   .ecomtable {
     min-width: 600px;
   }
-  .anatable{
+  .anatable {
     min-width: 500px;
   }
-  .martabel{
+  .martabel {
     min-width: 550px;
   }
-  .martab1{
+  .martab1 {
     min-width: 450px;
   }
 
-  .crmtable{
+  .crmtable {
     min-width: 1200px;
   }
 
-  .protable{
+  .protable {
     min-width: 900px;
   }
-}  
+}

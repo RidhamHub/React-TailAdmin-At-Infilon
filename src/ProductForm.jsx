@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";  
 
 const initialState = {
   imageUrl: "",
@@ -13,6 +15,11 @@ const initialState = {
 function ProductForm() {
   const [formData, setFormData] = useState(initialState);
   const [error, setError] = useState("");
+
+  const { id } = useParams();
+  const isEdit = Boolean(id);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,26 +41,56 @@ function ProductForm() {
     }
 
     try {
-      const res = await axios.post("http://localhost:7000/product", formData, {
-        headers: { "Content-Type": "application/json" },
-      });
-
-      console.log(res);
-
-      if (!res) {
-        throw new Error("Failed to add product");
+      let res;
+      if (isEdit) {
+        res = await axios.put(
+          `http://localhost:7000/product/edit/${id}`,
+          formData,
+          {
+            headers: { "Content-Type": "application/json" },
+          },
+        );
+        alert(`${formData.productName} updated successfully `);
+      } else {
+        res = await axios.post(
+          "http://localhost:7000/product/create",
+          formData,
+          {
+            headers: { "Content-Type": "application/json" },
+          },
+        );
+        alert(`${formData.productName} added successfully `);
       }
 
+      // console.log(res);
       setFormData(initialState);
-      // alert("Product added successfully");
+      navigate("/products");
+
     } catch (err) {
       setError(err.message);
     }
   };
 
+  useEffect(() => {
+    if (!isEdit) return;
+
+    const fetchproductforedit = async () => {
+      try {
+        const res = await axios.get(`http://localhost:7000/product/edit/${id}`);
+        setFormData(res.data.data);
+      } catch (e) {
+        console.log("Error in fetching data for update in form  :>> ", e);
+      }
+    };
+
+    fetchproductforedit();
+  }, [id, isEdit]);
+
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow">
-      <h2 className="text-xl font-semibold mb-4">Add Product</h2>
+      <h2 className="text-xl font-semibold mb-4">
+        {isEdit ? "Edit Product" : "Add Product"}
+      </h2>
 
       {error && <p className="text-red-600 mb-2">{error}</p>}
 
@@ -120,8 +157,10 @@ function ProductForm() {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50"
-        >submit</button>
+          className="w-full bg-blue-600 text-white py-2 rounded"
+        >
+          {isEdit ? "Update Product" : "Create Product"}
+        </button>
       </form>
     </div>
   );

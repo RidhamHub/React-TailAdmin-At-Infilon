@@ -12,6 +12,55 @@ function Side() {
       <div className="main-sider ">
         <p className="menu-tag">MENU</p>
         <div className="text-sm text-gray-700 max-w-md mx-auto">
+          <details className="group  rounded-lg bg-white overflow-hidden">
+            <summary className=" m-2 p-2 rounded-2xl flex  justify-around items-center font-medium cursor-pointer list-none  hover:bg-gray-50 transition-colors">
+              <div className="flex gap-2 mr-20 w-30">
+                <img src="src/assets/ecommerce.svg" alt="" />
+                <span>E-commerce</span>
+              </div>
+              <span className="transition group-open:rotate-180">
+                <svg
+                  fill="none"
+                  height="24"
+                  shape-rendering="geometricPrecision"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  width="24"
+                >
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </span>
+            </summary>
+            <div className="ml-10 slideDivP  text-gray-700">
+              <p>
+                <Link to="/products">Products</Link>
+              </p>
+              <p>
+                <Link to="/add-product">Add Products</Link>
+              </p>
+              <p>
+                <Link to="/billing">Billing</Link>
+              </p>
+              <p>
+                <Link to="/invoices">invoices</Link>
+              </p>
+              <p>
+                <Link to="/single-invoice">single invoice</Link>
+              </p>
+              <p>
+                <Link to="/create-invoice">Create invoices</Link>
+              </p>
+              <p>
+                <Link to="/">Transactions</Link>
+              </p>
+              <p>
+                <Link to="/">Single Transactions</Link>
+              </p>
+            </div>
+          </details>
           {/* <!-- Item 1: Account Settings --> */}
           <details className="group rounded-lg bg-white overflow-hidden" open>
             <summary className=" m-2 p-2 rounded-2xl flex  justify-around items-center font-medium cursor-pointer list-none  hover:bg-gray-50 transition-colors">
@@ -100,55 +149,6 @@ function Side() {
           </details>
 
           {/* <!-- Item 3: Security & Privacy --> */}
-          <details className="group  rounded-lg bg-white overflow-hidden">
-            <summary className=" m-2 p-2 rounded-2xl flex  justify-around items-center font-medium cursor-pointer list-none  hover:bg-gray-50 transition-colors">
-              <div className="flex gap-2 mr-20 w-30">
-                <img src="src/assets/ecommerce.svg" alt="" />
-                <span>E-commerce</span>
-              </div>
-              <span className="transition group-open:rotate-180">
-                <svg
-                  fill="none"
-                  height="24"
-                  shape-rendering="geometricPrecision"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  width="24"
-                >
-                  <path d="M6 9l6 6 6-6"></path>
-                </svg>
-              </span>
-            </summary>
-            <div className="ml-10 slideDivP  text-gray-700">
-              <p>
-                <Link to="/products">Products</Link>
-              </p>
-              <p>
-                <Link to="/add-product">Add Products</Link>
-              </p>
-              <p>
-                <Link to="/billing">Billing</Link>
-              </p>
-              <p>
-                <Link to="/invoices">invoices</Link>
-              </p>
-              <p>
-                <Link to="/single-invoice">single invoice</Link>
-              </p>
-              <p>
-                <Link to="/create-invoice">Create invoices</Link>
-              </p>
-              <p>
-                <Link to="/">Transactions</Link>
-              </p>
-              <p>
-                <Link to="/">Single Transactions</Link>
-              </p>
-            </div>
-          </details>
         </div>
 
         <p>SUPPORT</p>
@@ -159,9 +159,9 @@ function Side() {
           <li>Email</li>
         </ul>
 
-        <p>OTHERS</p>
+        <p className="mt-2">OTHERS</p>
 
-        <ul>
+        <ul className="space-y-1">
           <li>Charts</li>
           <li>Ui Elemets</li>
           <li>Authentication</li>

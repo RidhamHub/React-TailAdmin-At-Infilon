@@ -48,6 +48,7 @@ function ProductForm() {
           formData,
           {
             headers: { "Content-Type": "application/json" },
+            withCredentials: true,
           },
         );
         alert(`${formData.productName} updated successfully `);
@@ -57,6 +58,7 @@ function ProductForm() {
           formData,
           {
             headers: { "Content-Type": "application/json" },
+            withCredentials: true,
           },
         );
         alert(`${formData.productName} added successfully `);
@@ -76,7 +78,12 @@ function ProductForm() {
 
     const fetchproductforedit = async () => {
       try {
-        const res = await axios.get(`http://localhost:7000/product/edit/${id}`);
+        const res = await axios.get(
+          `http://localhost:7000/product/edit/${id}`,
+          {
+            withCredentials: true,
+          },
+        );
         setFormData(res.data.data);
       } catch (e) {
         console.log("Error in fetching data for update in form  :>> ", e);
@@ -87,7 +94,7 @@ function ProductForm() {
   }, [id, isEdit]);
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow">
+    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-2xl mt-10 ">
       <h2 className="text-xl font-semibold mb-4">
         {isEdit ? "Edit Product" : "Add Product"}
       </h2>

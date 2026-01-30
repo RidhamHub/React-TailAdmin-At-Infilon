@@ -1,9 +1,37 @@
 import { CiSearch } from "react-icons/ci";
 import { RxHamburgerMenu } from "react-icons/rx";
 import owner from "./assets/owner.webp";
-import down from "./assets/downarrow.svg";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { IoIosArrowDown } from "react-icons/io";
 
 function Nav() {
+  const navigate = useNavigate();
+
+  const name = localStorage.getItem("fullName");
+  const image = localStorage.getItem("profileImage");
+  const imageUrl = image ? `http://localhost:7000${image}` : owner;
+  // console.log(name, image);
+
+  const handleDelete = async (e) => {
+    try {
+      await axios.post(
+        "http://localhost:7000/auth/logout",
+        {},
+
+        {
+          withCredentials: true, // important if backend sets cookies
+        },
+      );
+      localStorage.removeItem("fullName");
+      localStorage.removeItem("profileImage");
+      // localStorage.removeItem("role");
+      navigate("/auth/login");
+    } catch (e) {
+      console.log("error in submiting logoutt form : ", e);
+    }
+  };
+
   return (
     <header className="sticky bg-white w-full top-0 z-10">
       <div>
@@ -46,6 +74,25 @@ function Nav() {
               </div>
             </div>
 
+            {/* <Link to="/auth/signup">
+              <button className="border p-1 rounded-xl bg-blue-200 text-sm border-gray-500">
+                Signup
+              </button>
+            </Link> */}
+
+            <button
+              onClick={handleDelete}
+              className="bg-blue-500 hover:bg-blue-700 text-white border rounded-lg px-3 py-1"
+            >
+              Logout
+            </button>
+
+            {/* <Link to="/auth/login">
+              <button className="border p-1 rounded-xl bg-blue-200 text-sm border-gray-500">
+                Login
+              </button>
+            </Link> */}
+
             <div className="right-nav flex gap-4 items-center">
               <div className="flex gap-2">
                 <button>
@@ -66,9 +113,16 @@ function Nav() {
               </div>
               <div className="">
                 <button className="flex gap-2 items-center  justify-center ">
-                  <img src={owner} alt="" />
-                  <span>Ridham</span>
-                  <img src={down} alt="" />
+                  <img
+                    className="h-10 w-10 rounded-full object-cover"
+                    src={imageUrl}
+                    alt=""
+                  />
+                  {/* <img src={owner } alt="" /> */}
+                  <span> {name}</span>
+                  <span>
+                    <IoIosArrowDown />
+                  </span>
                 </button>
               </div>
             </div>

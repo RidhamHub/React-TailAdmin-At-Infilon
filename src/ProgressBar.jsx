@@ -1,5 +1,5 @@
 const ProgressBar = ({ percentage }) => {
-    console.log(percentage)
+    // console.log(percentage)
     return (
       
     <div className="w-full bg-gray-200 rounded-full h-2">

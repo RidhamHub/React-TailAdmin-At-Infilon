@@ -1,37 +1,34 @@
 import { useEffect, useState } from "react";
 import EcommTitle from "./EcommTitle";
-import { DataTable } from "simple-datatables";
 import { FiDownload } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
-import { BsThreeDots } from "react-icons/bs";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie"
+import { jwtDecode } from "jwt-decode";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
+  // const role = localStorage.getItem("role");
+
+  const token = Cookies.get("accessToken");
+  // console.log(token);
+  
+  const decoded = jwtDecode(token);
+  // console.log(decoded);
+
+  const role = decoded.role;
   
 
-  const handleDelProduct = async (id) => {
-    // alert("buttn is clicked");
-    if (!window.confirm("Are you sure you want to delet the product")) return;
-
-    try {
-      const res = await axios.post(`http://localhost:7000/product/del/${id}`);
-      // alert(res.data.msg);
-      alldata();
-      // const updated = await axios.get("http://localhost:7000/product");
-      // setProducts(updated.data);
-    } catch (e) {
-      console.log("Error in delete of product : ", e);
-      alert("Failed to delete product");
-    }
-  };
+  console.log(document.Cookie);
 
   const alldata = async () => {
     try {
-      const res = await axios.get("http://localhost:7000/product");
-      console.log("product data : ", res);
+      const res = await axios.get("http://localhost:7000/product", {
+        withCredentials: true,
+      });
+      // console.log("product data : ", res);
       setProducts(res.data);
     } catch (error) {
       console.log("g0t error to get all data : ", error);
@@ -42,25 +39,31 @@ export default function Products() {
     alldata();
   }, []);
 
-  // useEffect(() => {
-  //   // const tableElement = document.getElementById("default-table");
-  //   // if (tableElement) {
-  //   // const dataTable = new DataTable("#default-table", { searchable: false, perPageSelect: false, });
+  const handleDelProduct = async (id) => {
+    if (!window.confirm("Are you sure you want to delet the product")) return;
 
-  //   if (products.length === 0) return;
+    try {
+      const res = await axios.post(
+        `http://localhost:7000/product/del/${id}`,
+        {}, // empty data...   axios.post(url, data, config)
+        {
+          withCredentials: true,
+        },
+      );
+      alldata(); //for reload products
+    } catch (e) {
+      console.log("Error in delete of product : ", e);
 
-  //   const dataTable = new DataTable("#default-table", {
-  //     searchable: false,
-  //     perPageSelect: false,
-  //   });
-
-  //   return () => {
-  //     dataTable.destroy();
-  //   };
-  // }, [products]);
+      if (e.response && e.response.status === 403) {
+        alert(e.response.data.msg); // "Accey ss Denied, Onlyadmin..."
+      } else {
+        alert("Failed to delete product");
+      }
+    }
+  };
 
   return (
-    <div className="bg-[#F9FAFB]">
+    <div className="bg-[#F9FAFB] pb-20">
       <EcommTitle title="Product List " />
 
       <div className="m-5 bg-white  rounded-2xl border border-gray-300">
@@ -75,10 +78,10 @@ export default function Products() {
             <button className="p-3 flex items-center border border-gray-300 rounded-lg ">
               Export <FiDownload />
             </button>
-            <button className="bg-blue-500  text-white border rounded-lg p-3">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white border rounded-lg p-3">
               +
               <a href="/product-form" className="ml-2 font-semibold">
-                App Product
+                Add Product
               </a>
             </button>
           </div>
@@ -102,87 +105,130 @@ export default function Products() {
         </div>
         <hr className="text-gray-300" />
 
-        <table className="protable" id="default-table">
-          <thead className="mt-0 ">
-            <tr className="">
-              {/* badha th ni style .css file ma chhe */}
-              {/* productListTh clas ni baju ma sorting icons no dekhay  */}
-              <th className="productListTh">
+        <table className="w-full protable" id="default-table">
+          <thead className="bg-gray-50 border-b border-gray-200">
+            <tr>
+              <th className="pl-6 py-4 text-left w-10">
                 <input
-                  className=" border-gray-300 rounded-sm"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
                   type="checkbox"
                 />
               </th>
-              <th>
-                <span className="flex items-center mr-5">Products</span>
+
+              <th className="px-3 py-4">
+                <span className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Product
+                </span>
               </th>
-              <th>
-                <span className="flex items-center mr-5">Category</span>
+
+              <th className="px-3 py-4">
+                <span className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Category
+                </span>
               </th>
-              <th>
-                <span className="flex items-center mr-5">Brand</span>
+
+              <th className="px-3 py-4">
+                <span className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Brand
+                </span>
               </th>
-              <th>
-                <span className="flex items-center mr-5">Price</span>
+
+              <th className="px-3 py-4">
+                <span className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Price
+                </span>
               </th>
-              <th>
-                <span className="flex items-center mr-5">Stock</span>
+
+              <th className="px-3 py-4">
+                <span className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Stock Status
+                </span>
               </th>
-              <th>
-                <span className="flex items-center mr-5">Created At</span>
+
+              <th className="px-3 py-4">
+                <span className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Date Added
+                </span>
               </th>
-              <th className="productListTh"> Action </th>
+
+              <th className="pr-6 py-4 text-center">
+                <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Actions
+                </span>
+              </th>
             </tr>
           </thead>
+
           <tbody>
             {products.map((item, index) => {
               const isInStock = item.stock === "In Stock";
 
               const textColor = isInStock ? "text-green-700" : "text-red-700";
               const bgColor = isInStock ? "bg-green-50" : "bg-red-50";
-
               return (
-                <tr key={item._id} className="text-gray-500 proListRow">
-                  <td>
-                    <input type="checkbox" />
+                <tr key={item._id} className="border-b border-gray-100 ">
+                  <td className="pl-6 py-4">
+                    <input
+                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                      type="checkbox"
+                    />
                   </td>
 
-                  <td>
-                    <div className="flex items-center gap-2">
-                      <img className="h-10 w-10" src={item.imageUrl} alt="" />
-                      <span className="text-gray-700">{item.productName}</span>
+                  <td className="py-4 px-3">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-lg overflow-hidden border border-gray-100 bg-gray-50">
+                        <img
+                          className="h-full w-full object-cover"
+                          src={item.imageUrl}
+                          alt={item.productName}
+                        />
+                      </div>
+                      <span className="font-medium text-gray-900 text-sm">
+                        {item.productName}
+                      </span>
                     </div>
                   </td>
 
-                  <td>{item.category}</td>
-                  <td>{item.brand}</td>
-                  <td>₹{item.price}</td>
+                  <td className="py-4 px-3 text-sm text-gray-600">
+                    {item.category}
+                  </td>
+                  <td className="py-4 px-3 text-sm text-gray-600">
+                    {item.brand}
+                  </td>
+                  <td className="py-4 px-3 text-sm font-semibold text-gray-900">
+                    ₹{item.price.toLocaleString()}
+                  </td>
 
-                  <td>
+                  <td className="py-4 px-3 ">
                     <span
-                      className={`${textColor} ${bgColor} px-2 text-xs rounded-full`}
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${textColor} ${bgColor}`}
                     >
                       {item.stock}
                     </span>
                   </td>
 
-                  <td>{new Date(item.createdAt).toLocaleDateString()}</td>
+                  <td className="py-4 px-3 text-sm text-center text-gray-500">
+                    {new Date(item.createdAt).toLocaleDateString()}
+                  </td>
 
-                  <td className="px-4 py-2 ">
-                    <button
-                      type="button"
-                      onClick={() => handleDelProduct(item._id)}
-                      className=" cursor-pointer border px-1 py-0 rounded-sm text-black text-sm bg-red-100 "
-                    >
-                      Delete
-                    </button>
-                    <Link to={`/product-form/edit/${item._id}`}>
+                  <td className="py-4 px-6 text-right">
+                    <div className="flex items-center justify-end gap-2 ">
+                      <Link to={`/product-form/edit/${item._id}`}>
+                        <button className="inline-flex items-center px-3 py-1 border border-gray-200 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 hover:border-blue-300 transition-all shadow-sm">
+                          Edit
+                        </button>
+                      </Link>
+                      {
+                        (role == "admin") &&
                       <button
-                        className="ml-2 px-1 py-0 border rounded-sm text-black text-sm bg-green-100"
+                        type="button"
+                        onClick={() => handleDelProduct(item._id)}
+                        className="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-all"
                       >
-                        Edit
+                        Delete
                       </button>
-                    </Link>
+                      } 
+                    </div>
                   </td>
                 </tr>
               );

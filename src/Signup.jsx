@@ -50,9 +50,13 @@ function Signup() {
 
     let res;
     try {
-      res = await axios.post("http://localhost:7000/auth/signup", data, {
-        withCredentials: true, // important if backend sets cookies
-      });
+      res = await axios.post(
+        "https://tailadmin-backend.onrender.com/auth/signup",
+        data,
+        {
+          withCredentials: true, // important if backend sets cookies
+        },
+      );
 
       alert("user created successfully.")
     } catch (e) {

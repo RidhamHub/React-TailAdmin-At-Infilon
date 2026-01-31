@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { useAuth } from "./context/AuthContext";
+import API_BASE_URL from "./config/api";
 
 const initialState = {
   fullName: "",
@@ -29,7 +30,7 @@ function Login() {
     // console.log(formData);
     let res;
     try {
-      res = await axios.post("http://localhost:7000/auth/login", formData, {
+      res = await axios.post(`${API_BASE_URL}/auth/login`, formData, {
         headers: {
           "Content-Type": "application/json",
         },

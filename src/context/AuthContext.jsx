@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "./config/api";
 
 const AuthContext = createContext();
 
@@ -10,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const fetchUser = async () => {
     try {
       const res = await axios.get(
-        "https://tailadmin-backend.vercel.app/auth/me",
+        `${API_BASE_URL}/auth/me`,
         {
           withCredentials: true,
         },

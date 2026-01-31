@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
+import API_BASE_URL from "./config/api";
 
 const initialState = {
   fullName: "",
@@ -49,7 +50,7 @@ function Signup() {
 
     let res;
     try {
-      res = await axios.post("http://localhost/auth/signup", data, {
+      res = await axios.post(`${API_BASE_URL}/auth/signup`, data, {
         withCredentials: true, // important if backend sets cookies
       });
 

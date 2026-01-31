@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "./config/api";
 
 const initialState = {
   imageUrl: "",
@@ -44,7 +45,7 @@ function ProductForm() {
       let res;
       if (isEdit) {
         res = await axios.put(
-          `https://tailadmin-backend.vercel.app/product/edit/${id}`,
+          `${API_BASE_URL}/product/edit/${id}`,
           formData,
           {
             headers: { "Content-Type": "application/json" },
@@ -54,7 +55,7 @@ function ProductForm() {
         alert(`${formData.productName} updated successfully `);
       } else {
         res = await axios.post(
-          "https://tailadmin-backend.vercel.app/product/create",
+          `${API_BASE_URL}/product/create`,
           formData,
           {
             headers: { "Content-Type": "application/json" },
@@ -78,7 +79,7 @@ function ProductForm() {
     const fetchproductforedit = async () => {
       try {
         const res = await axios.get(
-          `https://tailadmin-backend.vercel.app/product/edit/${id}`,
+          `${API_BASE_URL}/product/edit/${id}`,
           {
             withCredentials: true,
           },

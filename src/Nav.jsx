@@ -4,19 +4,20 @@ import owner from "./assets/owner.webp";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { IoIosArrowDown } from "react-icons/io";
+import API_BASE_URL from "./config/api";
 
 function Nav() {
   const navigate = useNavigate();
 
   const name = localStorage.getItem("fullName");
   const image = localStorage.getItem("profileImage");
-  const imageUrl = image ? `http://localhost:7000${image}` : owner;
+  const imageUrl = image ? `${API_BASE_URL}${image}` : owner;
   // console.log(name, image);
 
   const handleDelete = async (e) => {
     try {
       await axios.post(
-        "http://localhost:7000/auth/logout",
+        `${API_BASE_URL}/auth/logout`,
         {},
 
         {

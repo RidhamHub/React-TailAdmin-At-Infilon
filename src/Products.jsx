@@ -6,6 +6,7 @@ import { FaFilter } from "react-icons/fa";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
+import API_BASE_URL from "./config/api";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -26,7 +27,7 @@ export default function Products() {
   const alldata = async () => {
     try {
       const res = await axios.get(
-        "https://tailadmin-backend.vercel.app/product",
+        `${API_BASE_URL}/product`,
         {
           withCredentials: true,
         },
@@ -47,7 +48,7 @@ export default function Products() {
 
     try {
       const res = await axios.post(
-        `https://tailadmin-backend.vercel.app/product/del/${id}`,
+        `${API_BASE_URL}/product/del/${id}`,
         {}, // empty data...   axios.post(url, data, config)
         {
           withCredentials: true,

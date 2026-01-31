@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
+import { useAuth } from "./context/AuthContext";
 
 const initialState = {
   fullName: "",
@@ -12,6 +13,7 @@ function Login() {
   const [formData, setFormData] = useState(initialState);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { fetchUser } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,12 +41,12 @@ function Login() {
       // localStorage.setItem("role", res.data.user.role);
 
       setFormData(initialState);
-
+      await fetchUser();
       navigate("/");
     } catch (e) {
       // console.log("error in submiting login form : ", e);
       // console.log("error in submiting login form : ", e.response.data.msg);
-      if (e.response) {
+        if (e.response) {
         setError(e.response.data.msg);
       } else {
         setError("Something went wrong. Please try again.");

@@ -5,28 +5,32 @@ import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
+import { useAuth } from "./context/AuthContext";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   // const role = localStorage.getItem("role");
 
-  const token = Cookies.get("accessToken");
+  // const token = Cookies.get("accessToken");
   // console.log(token);
 
-  const decoded = jwtDecode(token);
+  // const decoded = jwtDecode(token);
   // console.log(decoded);
 
-  const role = decoded.role;
+  // const role = decoded.role;
+
+  const { user } = useAuth();
 
   // console.log(document.Cookie);
 
   const alldata = async () => {
     try {
-      const res = await axios.get("http://localhost:7000/product", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://tailadmin-backend.vercel.app/product",
+        {
+          withCredentials: true,
+        },
+      );
       // console.log("product data : ", res);
       setProducts(res.data);
     } catch (error) {
@@ -43,7 +47,7 @@ export default function Products() {
 
     try {
       const res = await axios.post(
-        `http://localhost:7000/product/del/${id}`,
+        `https://tailadmin-backend.vercel.app/product/del/${id}`,
         {}, // empty data...   axios.post(url, data, config)
         {
           withCredentials: true,
@@ -217,7 +221,7 @@ export default function Products() {
                           Edit
                         </button>
                       </Link>
-                      {role == "admin" && (
+                      {user?.role === "admin" && (
                         <button
                           type="button"
                           onClick={() => handleDelProduct(item._id)}

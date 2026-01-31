@@ -44,7 +44,7 @@ function ProductForm() {
       let res;
       if (isEdit) {
         res = await axios.put(
-          `http://localhost:7000/product/edit/${id}`,
+          `https://tailadmin-backend.vercel.app/product/edit/${id}`,
           formData,
           {
             headers: { "Content-Type": "application/json" },
@@ -54,7 +54,7 @@ function ProductForm() {
         alert(`${formData.productName} updated successfully `);
       } else {
         res = await axios.post(
-          "http://localhost:7000/product/create",
+          "https://tailadmin-backend.vercel.app/product/create",
           formData,
           {
             headers: { "Content-Type": "application/json" },
@@ -78,7 +78,7 @@ function ProductForm() {
     const fetchproductforedit = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:7000/product/edit/${id}`,
+          `https://tailadmin-backend.vercel.app/product/edit/${id}`,
           {
             withCredentials: true,
           },

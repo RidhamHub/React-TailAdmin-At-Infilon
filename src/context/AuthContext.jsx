@@ -17,8 +17,32 @@ export const AuthProvider = ({ children }) => {
         },
       );
       setUser(res.data);
-    } catch {
-      setUser(null);
+    } catch (error) {
+      // If access token expired, try to refresh it
+      if (error.response?.status === 401) {
+        try {
+          await axios.post(
+            `${API_BASE_URL}/auth/refresh`,
+            {},
+            {
+              withCredentials: true,
+            },
+          );
+          // Retry fetching user after refresh
+          const retryRes = await axios.get(
+            `${API_BASE_URL}/auth/me`,
+            {
+              withCredentials: true,
+            },
+          );
+          setUser(retryRes.data);
+        } catch (refreshError) {
+          // Refresh failed, user needs to login again
+          setUser(null);
+        }
+      } else {
+        setUser(null);
+      }
     } finally {
       setLoading(false);
     }

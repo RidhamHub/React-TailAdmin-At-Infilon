@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import axios from "axios";
+import { apiClientFormData } from "./config/axios";
 
 const initialState = {
   fullName: "",
@@ -50,13 +50,7 @@ function Signup() {
 
     let res;
     try {
-      res = await axios.post(
-        "https://tailadmin-backend.onrender.com/auth/signup",
-        data,
-        {
-          withCredentials: true, // important if backend sets cookies
-        },
-      );
+      res = await apiClientFormData.post("/auth/signup", data);
 
       alert("user created successfully.")
     } catch (e) {

@@ -21,7 +21,7 @@ export default function Products() {
   const role = decoded.role;
   
 
-  console.log(document.Cookie);
+  // console.log(document.Cookie);
 
   const alldata = async () => {
     try {

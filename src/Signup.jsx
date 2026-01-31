@@ -4,16 +4,17 @@ import axios from "axios";
 
 const initialState = {
   fullName: "",
-  email: "",
+  email: "", 
   password: "",
-};
+}; 
 
 function Signup() {
   const [formData, setFormData] = useState(initialState);
   const [profileImage, setProfileImage] = useState(null);
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +39,6 @@ function Signup() {
     setProfileImage(file);
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,15 +50,11 @@ function Signup() {
 
     let res;
     try {
-      res = await axios.post(
-        "https://tailadmin-backend.onrender.com/auth/signup",
-        data,
-        {
-          withCredentials: true, // important if backend sets cookies
-        },
-      );
+      res = await axios.post("http://localhost/auth/signup", data, {
+        withCredentials: true, // important if backend sets cookies
+      });
 
-      alert("user created successfully.")
+      alert("user created successfully.");
     } catch (e) {
       // console.log("error in submiting signup form from frontend: ", e);
       // console.log("DATA:", e.response?.data?.msg  );
@@ -67,7 +63,7 @@ function Signup() {
     }
 
     setFormData(initialState);
-    
+
     if (res.status === 200 || res.status === 201) {
       navigate("/auth/login");
     }

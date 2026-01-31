@@ -29,7 +29,7 @@ function Login() {
     let res;
     try {
       res = await axios.post(
-        "https://tailadmin-backend.onrender.com/auth/login",
+        "http://localhost:7000/auth/login",
         formData,
         {
           headers: {

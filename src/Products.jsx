@@ -29,7 +29,7 @@ export default function Products() {
       const res = await axios.get(
         `${API_BASE_URL}/product`,
         {
-          withCredentials: true,
+          // if needed pass with headers!!! Authorization: `Bearer ${token}`
         },
       );
       // console.log("product data : ", res);
@@ -48,11 +48,7 @@ export default function Products() {
 
     try {
       const res = await axios.post(
-        `${API_BASE_URL}/product/del/${id}`,
-        {}, // empty data...   axios.post(url, data, config)
-        {
-          withCredentials: true,
-        },
+        `${API_BASE_URL}/product/del/${id}`
       );
       alldata(); //for reload products
     } catch (e) {

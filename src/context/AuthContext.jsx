@@ -8,12 +8,17 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  console.log(localStorage.getItem("accessToken"));
+
+
   const fetchUser = async () => {
     try {
       const res = await axios.get(
         `${API_BASE_URL}/auth/me`,
         {
-          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+          }
         },
       );
       setUser(res.data);
@@ -23,17 +28,19 @@ export const AuthProvider = ({ children }) => {
         try {
           await axios.post(
             `${API_BASE_URL}/auth/refresh`,
-            {},
             {
-              withCredentials: true,
-            },
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("refreshToken")}`
+              }
+            }
           );
           // Retry fetching user after refresh
           const retryRes = await axios.get(
-            `${API_BASE_URL}/auth/me`,
-            {
-              withCredentials: true,
-            },
+            `${API_BASE_URL}/auth/me`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+            }
+          }
           );
           setUser(retryRes.data);
         } catch (refreshError) {

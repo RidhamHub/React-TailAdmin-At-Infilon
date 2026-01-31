@@ -48,8 +48,7 @@ function ProductForm() {
           `${API_BASE_URL}/product/edit/${id}`,
           formData,
           {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
+            headers: { "Content-Type": "application/json" }
           },
         );
         alert(`${formData.productName} updated successfully `);
@@ -59,7 +58,6 @@ function ProductForm() {
           formData,
           {
             headers: { "Content-Type": "application/json" },
-            withCredentials: true,
           },
         );
         alert(`${formData.productName} added successfully `);
@@ -81,7 +79,7 @@ function ProductForm() {
         const res = await axios.get(
           `${API_BASE_URL}/product/edit/${id}`,
           {
-            withCredentials: true,
+
           },
         );
         setFormData(res.data.data);

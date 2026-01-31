@@ -42,9 +42,9 @@ function Login() {
       localStorage.setItem("fullName", res.data.user.fullName);
       localStorage.setItem("profileImage", res.data.user.profileImage);
       // localStorage.setItem("role", res.data.user.role);
-      
+
       setFormData(initialState);
-      
+
       navigate("/");
     } catch (e) {
       // console.log("error in submiting login form : ", e);

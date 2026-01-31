@@ -23,18 +23,17 @@ export default function Products() {
 
   console.log(document.Cookie);
 
-  const alldata = async () => {
-    try {
-      const res = await axios.get("http://localhost:7000/product", {
-        withCredentials: true,
-      });
-      // console.log("product data : ", res);
-      setProducts(res.data);
-    } catch (error) {
-      console.log("g0t error to get all data : ", error);
-    }
-  };
-
+ const alldata = async () => {
+   try {
+     const res = await axios.get("http://localhost:7000/product", {
+       withCredentials: true,
+     });
+     // console.log("product data : ", res);
+     setProducts(res.data);
+   } catch (error) {
+     console.log("g0t error to get all data : ", error);
+   }
+ };
   useEffect(() => {
     alldata();
   }, []);

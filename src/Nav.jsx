@@ -2,7 +2,7 @@ import { CiSearch } from "react-icons/ci";
 import { RxHamburgerMenu } from "react-icons/rx";
 import owner from "./assets/owner.webp";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import apiClient, { API_URL } from "./config/axios";
 import { IoIosArrowDown } from "react-icons/io";
 
 function Nav() {
@@ -10,19 +10,12 @@ function Nav() {
 
   const name = localStorage.getItem("fullName");
   const image = localStorage.getItem("profileImage");
-  const imageUrl = image ? `http://localhost:7000${image}` : owner;
+  const imageUrl = image ? `${API_URL}${image}` : owner;
   // console.log(name, image);
 
   const handleDelete = async (e) => {
     try {
-      await axios.post(
-        "http://localhost:7000/auth/logout",
-        {},
-
-        {
-          withCredentials: true, // important if backend sets cookies
-        },
-      );
+      await apiClient.post("/auth/logout", {});
       localStorage.removeItem("fullName");
       localStorage.removeItem("profileImage");
       // localStorage.removeItem("role");

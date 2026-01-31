@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import apiClient from "./config/axios";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";  
 
@@ -43,24 +43,10 @@ function ProductForm() {
     try {
       let res;
       if (isEdit) {
-        res = await axios.put(
-          `http://localhost:7000/product/edit/${id}`,
-          formData,
-          {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          },
-        );
+        res = await apiClient.put(`/product/edit/${id}`, formData);
         alert(`${formData.productName} updated successfully `);
       } else {
-        res = await axios.post(
-          "http://localhost:7000/product/create",
-          formData,
-          {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          },
-        );
+        res = await apiClient.post("/product/create", formData);
         alert(`${formData.productName} added successfully `);
       }
 
@@ -78,12 +64,7 @@ function ProductForm() {
 
     const fetchproductforedit = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:7000/product/edit/${id}`,
-          {
-            withCredentials: true,
-          },
-        );
+        const res = await apiClient.get(`/product/edit/${id}`);
         setFormData(res.data.data);
       } catch (e) {
         console.log("Error in fetching data for update in form  :>> ", e);

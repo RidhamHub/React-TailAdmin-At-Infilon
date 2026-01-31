@@ -3,7 +3,7 @@ import EcommTitle from "./EcommTitle";
 import { FiDownload } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
-import axios from "axios";
+import apiClient from "./config/axios";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie"
 import { jwtDecode } from "jwt-decode";
@@ -23,18 +23,15 @@ export default function Products() {
 
   // console.log(document.Cookie);
 
-  const alldata = async () => {
-    try {
-      const res = await axios.get("http://localhost:7000/product", {
-        withCredentials: true,
-      });
-      // console.log("product data : ", res);
-      setProducts(res.data);
-    } catch (error) {
-      console.log("g0t error to get all data : ", error);
-    }
-  };
-
+ const alldata = async () => {
+   try {
+     const res = await apiClient.get("/product");
+     // console.log("product data : ", res);
+     setProducts(res.data);
+   } catch (error) {
+     console.log("g0t error to get all data : ", error);
+   }
+ };
   useEffect(() => {
     alldata();
   }, []);
@@ -43,13 +40,7 @@ export default function Products() {
     if (!window.confirm("Are you sure you want to delet the product")) return;
 
     try {
-      const res = await axios.post(
-        `http://localhost:7000/product/del/${id}`,
-        {}, // empty data...   axios.post(url, data, config)
-        {
-          withCredentials: true,
-        },
-      );
+      const res = await apiClient.post(`/product/del/${id}`, {});
       alldata(); //for reload products
     } catch (e) {
       console.log("Error in delete of product : ", e);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import axios from "axios";
+import apiClient from "./config/axios";
 
 const initialState = {
   fullName: "",
@@ -28,23 +28,13 @@ function Login() {
     // console.log(formData);
     let res;
     try {
-      res = await axios.post(
-        "http://localhost:7000/auth/login",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true, // important if backend sets cookies
-        },
-      );
-
+      res = await apiClient.post("/auth/login", formData);
       localStorage.setItem("fullName", res.data.user.fullName);
       localStorage.setItem("profileImage", res.data.user.profileImage);
       // localStorage.setItem("role", res.data.user.role);
-      
+
       setFormData(initialState);
-      
+
       navigate("/");
     } catch (e) {
       // console.log("error in submiting login form : ", e);

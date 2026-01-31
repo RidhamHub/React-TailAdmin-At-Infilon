@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import axios from "axios";
+import { apiClientFormData } from "./config/axios";
 
 const initialState = {
   fullName: "",
@@ -50,11 +50,9 @@ function Signup() {
 
     let res;
     try {
-      res = await axios.post("http://localhost/auth/signup", data, {
-        withCredentials: true, // important if backend sets cookies
-      });
+      res = await apiClientFormData.post("/auth/signup", data);
 
-      alert("user created successfully.");
+      alert("user created successfully.")
     } catch (e) {
       // console.log("error in submiting signup form from frontend: ", e);
       // console.log("DATA:", e.response?.data?.msg  );

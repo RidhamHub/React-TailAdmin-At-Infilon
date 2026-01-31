@@ -3,11 +3,23 @@ import { useAuth } from "../context/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  console.log("AUTH STATE:", user, loading);
 
-  if (loading) return null;
+  // Show loading spinner while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
-  return user ? children : <Navigate to="/auth/login" replace />;
+  // Redirect to login if not authenticated
+  if (!user) {
+    return <Navigate to="/auth/login" replace />;
+  }
+
+  // User is authenticated, render protected content
+  return children;
 };
 
 export default ProtectedRoute;

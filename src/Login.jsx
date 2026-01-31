@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import apiClient from "./config/axios";
+import axios from "axios";
 
 const initialState = {
   fullName: "",
@@ -13,7 +13,6 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -28,7 +27,13 @@ function Login() {
     // console.log(formData);
     let res;
     try {
-      res = await apiClient.post("/auth/login", formData);
+      res = await axios.post("http://localhost:7000/auth/login", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true, // important if backend sets cookies
+      });
+
       localStorage.setItem("fullName", res.data.user.fullName);
       localStorage.setItem("profileImage", res.data.user.profileImage);
       // localStorage.setItem("role", res.data.user.role);
@@ -40,7 +45,7 @@ function Login() {
       // console.log("error in submiting login form : ", e);
       // console.log("error in submiting login form : ", e.response.data.msg);
       if (e.response) {
-        setError(e.response.data.msg)
+        setError(e.response.data.msg);
       } else {
         setError("Something went wrong. Please try again.");
         // console.log("error : .." , e)

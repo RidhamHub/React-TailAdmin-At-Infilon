@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import apiClient from "./config/axios";
+import axios from "axios";
 import { useParams } from "react-router";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   imageUrl: "",
@@ -43,17 +43,30 @@ function ProductForm() {
     try {
       let res;
       if (isEdit) {
-        res = await apiClient.put(`/product/edit/${id}`, formData);
+        res = await axios.put(
+          `http://localhost:7000/product/edit/${id}`,
+          formData,
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          },
+        );
         alert(`${formData.productName} updated successfully `);
       } else {
-        res = await apiClient.post("/product/create", formData);
+        res = await axios.post(
+          "http://localhost:7000/product/create",
+          formData,
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          },
+        );
         alert(`${formData.productName} added successfully `);
       }
 
       // console.log(res);
       setFormData(initialState);
       navigate("/products");
-
     } catch (err) {
       setError(err.message);
     }
@@ -64,7 +77,12 @@ function ProductForm() {
 
     const fetchproductforedit = async () => {
       try {
-        const res = await apiClient.get(`/product/edit/${id}`);
+        const res = await axios.get(
+          `http://localhost:7000/product/edit/${id}`,
+          {
+            withCredentials: true,
+          },
+        );
         setFormData(res.data.data);
       } catch (e) {
         console.log("Error in fetching data for update in form  :>> ", e);

@@ -3,9 +3,9 @@ import EcommTitle from "./EcommTitle";
 import { FiDownload } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
-import apiClient from "./config/axios";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
 export default function Products() {
@@ -14,24 +14,26 @@ export default function Products() {
 
   const token = Cookies.get("accessToken");
   // console.log(token);
-  
+
   const decoded = jwtDecode(token);
   // console.log(decoded);
 
   const role = decoded.role;
-  
 
-  console.log(document.Cookie);
+  // console.log(document.Cookie);
 
- const alldata = async () => {
-   try {
-     const res = await apiClient.get("/product");
-     // console.log("product data : ", res);
-     setProducts(res.data);
-   } catch (error) {
-     console.log("g0t error to get all data : ", error);
-   }
- };
+  const alldata = async () => {
+    try {
+      const res = await axios.get("http://localhost:7000/product", {
+        withCredentials: true,
+      });
+      // console.log("product data : ", res);
+      setProducts(res.data);
+    } catch (error) {
+      console.log("g0t error to get all data : ", error);
+    }
+  };
+
   useEffect(() => {
     alldata();
   }, []);
@@ -40,7 +42,13 @@ export default function Products() {
     if (!window.confirm("Are you sure you want to delet the product")) return;
 
     try {
-      const res = await apiClient.post(`/product/del/${id}`, {});
+      const res = await axios.post(
+        `http://localhost:7000/product/del/${id}`,
+        {}, // empty data...   axios.post(url, data, config)
+        {
+          withCredentials: true,
+        },
+      );
       alldata(); //for reload products
     } catch (e) {
       console.log("Error in delete of product : ", e);
@@ -209,16 +217,15 @@ export default function Products() {
                           Edit
                         </button>
                       </Link>
-                      {
-                        (role == "admin") &&
-                      <button
-                        type="button"
-                        onClick={() => handleDelProduct(item._id)}
-                        className="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-all"
-                      >
-                        Delete
-                      </button>
-                      } 
+                      {role == "admin" && (
+                        <button
+                          type="button"
+                          onClick={() => handleDelProduct(item._id)}
+                          className="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-all"
+                        >
+                          Delete
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>

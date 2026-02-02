@@ -17,12 +17,7 @@ function Nav() {
   const handleDelete = async (e) => {
     try {
       await axios.post(
-        `${API_BASE_URL}/auth/logout`,
-        {},
-
-        {
-          withCredentials: true, // important if backend sets cookies
-        },
+        `${API_BASE_URL}/auth/logout`
       );
       localStorage.removeItem("fullName");
       localStorage.removeItem("profileImage");

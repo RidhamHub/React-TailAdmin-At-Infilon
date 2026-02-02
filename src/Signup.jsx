@@ -50,9 +50,7 @@ function Signup() {
 
     let res;
     try {
-      res = await axios.post(`${API_BASE_URL}/auth/signup`, data, {
-        withCredentials: true, // important if backend sets cookies
-      });
+      res = await axios.post(`${API_BASE_URL}/auth/signup`, data, {});
 
       alert("user created successfully.");
     } catch (e) {

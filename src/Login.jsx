@@ -33,10 +33,11 @@ function Login() {
       res = await axios.post(`${API_BASE_URL}/auth/login`, formData, {
         headers: {
           "Content-Type": "application/json",
-        },
-        withCredentials: true, // important if backend sets cookies
+        }
       });
 
+      localStorage.setItem("accessToken", res.data.tokens.accessToken);
+      localStorage.setItem("refreshToken", res.data.tokens.refreshToken);
       localStorage.setItem("fullName", res.data.user.fullName);
       localStorage.setItem("profileImage", res.data.user.profileImage);
       // localStorage.setItem("role", res.data.user.role);
@@ -47,7 +48,7 @@ function Login() {
     } catch (e) {
       // console.log("error in submiting login form : ", e);
       // console.log("error in submiting login form : ", e.response.data.msg);
-        if (e.response) {
+      if (e.response) {
         setError(e.response.data.msg);
       } else {
         setError("Something went wrong. Please try again.");

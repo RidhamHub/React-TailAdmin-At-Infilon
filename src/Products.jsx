@@ -48,14 +48,20 @@ export default function Products() {
 
     try {
       const res = await axios.post(
-        `${API_BASE_URL}/product/del/${id}`
+        `${API_BASE_URL}/product/del/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       alldata(); //for reload products
     } catch (e) {
       console.log("Error in delete of product : ", e);
 
       if (e.response && e.response.status === 403) {
-        alert(e.response.data.msg); // "Accey ss Denied, Onlyadmin..."
+        alert(e.response.data.msg); // "Access Denied, Only admin..."
       } else {
         alert("Failed to delete product");
       }

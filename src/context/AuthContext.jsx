@@ -26,14 +26,21 @@ export const AuthProvider = ({ children }) => {
       // If access token expired, try to refresh it
       if (error.response?.status === 401) {
         try {
-          await axios.post(
+          const refreshRes = await axios.post(
             `${API_BASE_URL}/auth/refresh`,
+            {
+              refreshToken: localStorage.getItem("refreshToken")
+            },
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("refreshToken")}`
               }
             }
           );
+          // Update access token in localStorage if returned
+          if (refreshRes.data.accessToken) {
+            localStorage.setItem("accessToken", refreshRes.data.accessToken);
+          }
           // Retry fetching user after refresh
           const retryRes = await axios.get(
             `${API_BASE_URL}/auth/me`, {
@@ -45,6 +52,8 @@ export const AuthProvider = ({ children }) => {
           setUser(retryRes.data);
         } catch (refreshError) {
           // Refresh failed, user needs to login again
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
           setUser(null);
         }
       } else {

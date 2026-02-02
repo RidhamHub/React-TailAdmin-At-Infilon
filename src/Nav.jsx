@@ -11,7 +11,10 @@ function Nav() {
 
   const name = localStorage.getItem("fullName");
   const image = localStorage.getItem("profileImage");
-  const imageUrl = image ? `${API_BASE_URL}${image}` : owner;
+  // Handle both regular paths and base64 data URIs
+  const imageUrl = image 
+    ? (image.startsWith('data:') ? image : `${API_BASE_URL}${image}`)
+    : owner;
   // console.log(name, image);
 
   const handleDelete = async (e) => {
@@ -21,10 +24,18 @@ function Nav() {
       );
       localStorage.removeItem("fullName");
       localStorage.removeItem("profileImage");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
       // localStorage.removeItem("role");
       navigate("/auth/login");
     } catch (e) {
       console.log("error in submiting logoutt form : ", e);
+      // Clear localStorage even if API call fails
+      localStorage.removeItem("fullName");
+      localStorage.removeItem("profileImage");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      navigate("/auth/login");
     }
   };
 
